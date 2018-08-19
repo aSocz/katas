@@ -6,7 +6,7 @@ namespace CodewarsSandbox
 {
     public class SimplexerTests
     {
-        private static Token[] ToArray(Simplexer.Classes.Simplexer lexer)
+        private static Token[] ToArray(SimplexerOriginal lexer)
         {
             var tokens = new List<Token>();
             while (lexer.MoveNext())
@@ -20,7 +20,7 @@ namespace CodewarsSandbox
         [Fact]
         public void TestEmpty()
         {
-            var lexer = new Simplexer.Classes.Simplexer("");
+            var lexer = new SimplexerOriginal("");
             Assert.False(lexer.MoveNext());
         }
 
@@ -28,7 +28,7 @@ namespace CodewarsSandbox
         public void TestExpression()
         {
             // Simple Expression
-            var lexer = new Simplexer.Classes.Simplexer("(1 + 2) - 5");
+            var lexer = new SimplexerOriginal("(1 + 2) - 5");
             Assert.Equal(
                 new[]
                 {
@@ -51,27 +51,27 @@ namespace CodewarsSandbox
         public void TestSingle()
         {
             // Identifier
-            var lexer = new Simplexer.Classes.Simplexer("x");
+            var lexer = new SimplexerOriginal("x");
             Assert.True(lexer.MoveNext());
             Assert.Equal(new Token("x", "identifier"), lexer.Current);
 
             // Boolean
-            lexer = new Simplexer.Classes.Simplexer("true");
+            lexer = new SimplexerOriginal("true");
             Assert.True(lexer.MoveNext());
             Assert.Equal(new Token("true", "boolean"), lexer.Current);
 
             // Integer
-            lexer = new Simplexer.Classes.Simplexer("12345");
+            lexer = new SimplexerOriginal("12345");
             Assert.True(lexer.MoveNext());
             Assert.Equal(new Token("12345", "integer"), lexer.Current);
 
             // String
-            lexer = new Simplexer.Classes.Simplexer("\"Hello\"");
+            lexer = new SimplexerOriginal("\"Hello\"");
             Assert.True(lexer.MoveNext());
             Assert.Equal(new Token("\"Hello\"", "string"), lexer.Current);
 
             // Keyword
-            lexer = new Simplexer.Classes.Simplexer("break");
+            lexer = new SimplexerOriginal("break");
             Assert.True(lexer.MoveNext());
             Assert.Equal(new Token("break", "keyword"), lexer.Current);
         }
@@ -80,7 +80,7 @@ namespace CodewarsSandbox
         public void TestStatement()
         {
             // Simple statement
-            var lexer = new Simplexer.Classes.Simplexer("return x + 1");
+            var lexer = new SimplexerOriginal("return x + 1");
             Assert.Equal(
                 new[]
                 {
