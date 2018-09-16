@@ -18,22 +18,18 @@ namespace FabergeEasterEggs
 
             if (eggs == 0 || tries == 0)
             {
-                memory[eggs, tries] = 0;
                 return 0;
             }
 
             if (eggs == 1)
             {
-                memory[eggs, tries] = tries;
                 return tries;
             }
 
             if (eggs == 2)
             {
                 //Basic case, see http://datagenetics.com/blog/july22012/index.html
-                var height = tries * (tries + 1) / 2;
-                memory[eggs, tries] = height;
-                return height;
+                return tries * (tries + 1) / 2;
             }
 
             var eggBrokenCase = Height(eggs - 1, tries - 1, memory);
